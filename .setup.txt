@@ -1,0 +1,16 @@
+# WEBCAST.DCLM.ORG
+project:    dclm-webcast
+repo:       https://github.com/dclmict/dclm-webcast
+url:        https://webcast.dclm.org
+
+
+-- setup repo
+cd ~/dev/code/dclm/webcast.dclm.org
+git init
+git add . && git commit -m "first commit"
+gh repo create dclmict/dclm-webcast --public --source=. --remote=origin
+git push --set-upstream origin main
+git push
+
+
+rsync -iavh -e ssh --info=progress2 --delete menu.php ubuntu@dclmict.org:/var/www/webcast.dclm.org/bin/
