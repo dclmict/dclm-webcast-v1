@@ -1,0 +1,20 @@
+# Services
+services:
+
+  # Testimony Service
+  webcast-app:
+    container_name: testimony-app
+    image: opeoniye/nginx-php-fpm
+    ports:
+      - 5000:80
+    networks:
+      - webcast
+    #volumes:
+      #- ./:/var/www/html
+      #- ./.docker/testify.conf:/etc/nginx/sites-available/default.conf
+      # - ./.env:/var/www/html/.env
+    restart: always
+
+networks:
+  testimony:
+    name: webcast
