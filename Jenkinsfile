@@ -8,12 +8,12 @@ pipeline {
     stages {
         stage('Clone App') {
             steps {
-                git 'https://github.com/dclmict/dclm-webcast.git'
+                git branch: 'main', url: 'https://github.com/dclmict/dclm-webcast.git'
             }
         }
         stage('Build AppImage') {
             steps {
-                script{
+                script {
                   image = docker.build imageName
                 }
             }
