@@ -1,30 +1,44 @@
 pipeline {
-    agent {
-        label {
-            label 'master'
-            customWorkspace "${JENKINS_HOME}/${BUILD_NUMBER}/"
-        }
-    }
+    agent any
+
     environment {
-        Go111MODULE='on'
+        imageName="dclm/dclm-webcast:${BUILD_NUMBER}"
+        image = ''
     }
     stages {
-        stage('Test') {
+        stage('Clone App') {
             steps {
                 git 'https://github.com/dclmict/dclm-webcast.git'
             }
         }
-        stage('Build') {
+        stage('Build AppImage') {
             steps {
                 script{
-                    image = docker.build("dclm/dclm-webcast")
+                  image = docker.build imageName
                 }
             }
         }
-        stage('Run') {
-            steps {
-                sh "docker run -p 5000:80 -d dclm/dclm-webcast"
+        stage('Push AppImage') {
+          environment {
+            registryCredential = 'dockerLogin'
+          }
+          steps{
+            script {
+              docker.withRegistry('https://registry.hub.docker.com', registryCredential) {
+                  image.push("${BUILD_NUMBER}")
+                  sh 'docker rmi -f ${imageName}'
+              }
             }
+          }
+        }
+        stage('Deploying App to Kubernetes') {
+          steps {
+            dir('k8s'){
+              script {
+                kubernetesDeploy(enableConfigSubstitution: true, configs: "webcast.yaml", kubeconfigId: "kubernetes")
+              }
+            }
+          }
         }
     }
 }
