@@ -2,9 +2,8 @@ pipeline {
     agent any
 
     environment {
-        buildNumber = '${env.BUILD_NUMBER}'
-        imageName = 'opeoniye/dclm-webcast:$buildNumber'
-        image = ''
+        imageName = "opeoniye/dclm-webcast"
+        image = ""
     }
     stages {
         stage('Clone App') {
@@ -14,9 +13,10 @@ pipeline {
         }
         stage('Build AppImage') {
             steps {
+                echo "Running build ${env.BUILD_NUMBER}"
                 sh 'printenv | sort'
                 script {
-                  image = docker.build imageName
+                  image = docker.build imageName:${env.BUILD_NUMBER}
                 }
             }
         }
