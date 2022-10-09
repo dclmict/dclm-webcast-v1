@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        imageName = 'opeoniye/dclm-webcast:${BUILD_NUMBER}'
+        imageName = 'opeoniye/dclm-webcast:${env.BUILD_NUMBER}'
         image = ''
     }
     stages {
