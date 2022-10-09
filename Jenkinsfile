@@ -14,9 +14,9 @@ pipeline {
         stage('Build AppImage') {
             steps {
                 echo "Running build ${env.BUILD_NUMBER}"
-                sh 'printenv | sort'
+                // sh 'printenv | sort'
                 script {
-                  image = docker.build imageName:${env.BUILD_NUMBER}
+                  image = docker.build imageName
                 }
             }
         }
