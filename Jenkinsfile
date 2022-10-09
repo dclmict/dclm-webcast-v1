@@ -2,7 +2,8 @@ pipeline {
     agent any
 
     environment {
-        imageName = 'opeoniye/dclm-webcast:${env.BUILD_NUMBER}'
+        buildNumber = '${env.BUILD_NUMBER}'
+        imageName = 'opeoniye/dclm-webcast:$buildNumber'
         image = ''
     }
     stages {
@@ -13,6 +14,7 @@ pipeline {
         }
         stage('Build AppImage') {
             steps {
+                sh 'printenv | sort'
                 script {
                   image = docker.build imageName
                 }
@@ -25,7 +27,7 @@ pipeline {
           steps{
             script {
               docker.withRegistry('https://registry.hub.docker.com', registryCredential) {
-                  image.push("${BUILD_NUMBER}")
+                  image.push("${buildNumber}")
                   sh 'docker rmi -f ${imageName}'
               }
             }
