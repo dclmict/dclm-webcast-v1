@@ -1,47 +1,45 @@
-pipeline {
-    agent any
+podTemplate(yaml: '''
+    apiVersion: v1
+    kind: Pod
+    spec:
+      containers:
+      - name: jnlp
+        image: jenkins/inbound-agent:latest
+      - name: kaniko
+        image: gcr.io/kaniko-project/executor:debug
+        volumeMounts:
+        - name: kaniko-secret
+          mountPath: /kaniko/.docker
+      restartPolicy: Never
+      volumes:
+      - name: kaniko-secret
+        secret:
+            secretName: dockerId
+            items:
+            - key: .dockerconfigjson
+              path: config.json
+''') {
+  node(POD_LABEL) {
+    stage('Jnlp') {
+      git url: 'https://github.com/dclmict/dclm-webcast.git', branch: 'main'
+      container('jnlp') {
+        stage('echo test') {
+          sh '''
+          echo pwd
+          '''
+        }
+      }
+    }
 
-    environment {
-        buildNumber = "${env.BUILD_NUMBER}"
-        imageName = "opeoniye/dclm-webcast:${buildNumber}"
-        image = ""
+    stage('Kaniko') {
+      container('kaniko') {
+        stage('build webcast-app') {
+          sh '''
+            /kaniko/executor --context `pwd` --destination opeoniye/dclm-webcast + ":$BUILD_NUMBER"
+          '''
+        }
+      }
     }
-    stages {
-        stage('Clone App') {
-            steps {
-                git branch: 'main', url: 'https://github.com/dclmict/dclm-webcast.git'
-            }
-        }
-        stage('Build AppImage') {
-            steps {
-                echo "${env.BUILD_NUMBER}"
-                // sh 'printenv | sort'
-                script {
-                  image = docker.build imageName
-                }
-            }
-        }
-        stage('Push AppImage') {
-          environment {
-            registryCredential = 'dockerLogin'
-          }
-          steps{
-            script {
-              docker.withRegistry('https://registry.hub.docker.com', registryCredential) {
-                  image.push("${buildNumber}")
-                  sh 'docker rmi -f ${imageName}'
-              }
-            }
-          }
-        }
-        stage('Deploying App to Kubernetes') {
-          steps {
-            dir('k8s'){
-              script {
-                kubernetesDeploy(enableConfigSubstitution: true, configs: "webcast.yaml", kubeconfigId: "kubernetes")
-              }
-            }
-          }
-        }
-    }
+
+  }
 }
