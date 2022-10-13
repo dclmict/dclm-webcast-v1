@@ -14,7 +14,7 @@ podTemplate(yaml: '''
       volumes:
       - name: kaniko-secret
         secret:
-            secretName: dockerId
+            secretName: dockerhub
             items:
             - key: .dockerconfigjson
               path: config.json
