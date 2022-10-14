@@ -3,10 +3,18 @@ podTemplate(yaml: '''
     kind: Pod
     spec:
       containers:
-      - name: jnlp
-        image: jenkins/inbound-agent:latest
+      - name: maven
+        image: maven:3.8.1-jdk-8
+        command:
+        - sleep
+        args:
+        - 99d
       - name: kaniko
         image: gcr.io/kaniko-project/executor:debug
+        command:
+        - sleep
+        args:
+        - 9999999
         volumeMounts:
         - name: kaniko-secret
           mountPath: /kaniko/.docker
