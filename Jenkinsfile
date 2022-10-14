@@ -43,7 +43,7 @@ podTemplate(yaml: '''
       container('kaniko') {
         stage('build webcast-app') {
           sh '''
-            /kaniko/executor --context `pwd` --destination opeoniye/dclm-webcast:1.0
+            /kaniko/executor --context `pwd` --destination opeoniye/dclm-webcast + ":$BUILD_NUMBER"
           '''
         }
       }
