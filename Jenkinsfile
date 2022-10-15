@@ -3,8 +3,8 @@ podTemplate(yaml: '''
     kind: Pod
     spec:
       containers:
-      - name: maven
-        image: maven:3.8.1-jdk-8
+      - name: jnlp
+        image: jenkins/inbound-agent
         command:
         - sleep
         args:
@@ -26,28 +26,34 @@ podTemplate(yaml: '''
             items:
             - key: .dockerconfigjson
               path: config.json
-''') {
+'''){
   node(POD_LABEL) {
-    stage('Jnlp') {
+    stage('clone') {
       git url: 'https://github.com/dclmict/dclm-webcast.git', branch: 'main'
       container('jnlp') {
-        stage('echo test') {
-          sh '''
-          echo pwd
-          '''
-        }
+        sh '''
+          pwd
+        '''
       }
     }
 
-    stage('Kaniko') {
+    stage('build') {
       container('kaniko') {
-        stage('build webcast-app') {
-          sh '''
-            /kaniko/executor --context `pwd` --destination opeoniye/dclm-webcast:$BUILD_NUMBER
-          '''
-        }
+        sh '''
+          /kaniko/executor --context `pwd` --destination opeoniye/dclm-webcast:$BUILD_NUMBER
+        '''
       }
     }
 
+    stage('deploy') {
+      container('kaniko') {
+        dir('k8s'){
+          script {
+            kubernetesDeploy(enableConfigSubstitution: true, configs: "webcast.yaml", kubeconfigId: "kubernetes")
+          }
+        }
+      }
+    }
   }
+
 }

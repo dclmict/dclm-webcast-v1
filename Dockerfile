@@ -1,7 +1,7 @@
 FROM nginx:stable-alpine
 
-LABEL maintener="Samuel John <docker-maint@nginx.com>"
+LABEL maintener="Samuel John <sam4real02@gmail.com>"
 
 WORKDIR /usr/share/nginx/html
 
-COPY . /usr/share/nginx/html
+COPY . .
