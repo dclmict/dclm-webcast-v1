@@ -49,6 +49,7 @@ podTemplate(yaml: '''
           //   kubernetesDeploy(enableConfigSubstitution: true, configs: "webcast.yaml", kubeconfigId: "kubernetes")
           // }
           sh '''
+            pwd && ls
             kubectl apply -f k8s/webcast.yaml
             kubectl get deployments/webcast-app -n devops
           '''
