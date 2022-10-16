@@ -13,6 +13,7 @@ spec:
         app: webcast-app
     spec:
       nodeName: bams
+      serviceAccountName: jenkins-admin
       containers:
       - name: webcast-app
         image: opeoniye/dclm-webcast:$BUILD_NUMBER
