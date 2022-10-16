@@ -25,6 +25,7 @@ podTemplate(yaml: '''
 ''') {
   node(POD_LABEL) {
     stage('build') {
+      git url: 'https://github.com/dclmict/dclm-webcast.git', branch: 'main'      
       container('kaniko') {
         stage('build webcast-app') {
           sh '''
@@ -35,7 +36,6 @@ podTemplate(yaml: '''
     }
 
     stage('deploy') {
-      git url: 'https://github.com/dclmict/dclm-webcast.git', branch: 'main'
       container('jnlp') {
         stage('deploy webcast-app') {
           sh '''
