@@ -18,30 +18,32 @@ podTemplate(yaml: '''
       volumes:
       - name: kaniko-secret
         secret:
-            secretName: dockerhub
+            secretName: dockercred
             items:
             - key: .dockerconfigjson
               path: config.json
-'''){
+''') {
   node(POD_LABEL) {
     stage('build') {
-      git url: 'https://github.com/dclmict/dclm-webcast.git', branch: 'main'
       container('kaniko') {
-        sh '''
-          /kaniko/executor --context `pwd` --destination opeoniye/dclm-webcast:$BUILD_NUMBER
-        '''
+        stage('build webcast-app') {
+          sh '''
+            /kaniko/executor --context `pwd` --destination opeoniye/dclm-webcast:$BUILD_NUMBER
+          '''
+        }
       }
     }
 
     stage('deploy') {
+      git url: 'https://github.com/dclmict/dclm-webcast.git', branch: 'main'
       container('jnlp') {
-        stage {
-          script {
+        stage('deploy webcast-app') {
+          sh '''
             kubernetesDeploy(enableConfigSubstitution: true, configs: "k8s/webcast.yaml", kubeconfigId: "kubernetes")
-          }
+          '''
         }
       }
     }
-  }
 
+  }
 }
