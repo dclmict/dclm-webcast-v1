@@ -38,9 +38,9 @@ podTemplate(yaml: '''
     stage('deploy') {
       container('jnlp') {
         stage('deploy webcast-app') {
-          sh '''
-            kubernetesDeploy(enableConfigSubstitution: true, configs: "k8s/webcast.yaml", kubeconfigId: "kubernetes")
-          '''
+          script {
+            kubernetesDeploy(enableConfigSubstitution: true, configs: "webcast.yaml", kubeconfigId: "kubernetes")
+          }
         }
       }
     }
