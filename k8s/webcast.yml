@@ -15,7 +15,7 @@ spec:
       nodeName: bams
       containers:
       - name: webcast-app
-        image: opeoniye/dclm-webcast:${BUILD_NUMBER}
+        image: opeoniye/dclm-webcast:${env.BUILD_NUMBER}
         imagePullPolicy: IfNotPresent
         resources:
           limits:
