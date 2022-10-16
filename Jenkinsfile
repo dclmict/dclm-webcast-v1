@@ -2,6 +2,7 @@ podTemplate(yaml: '''
     apiVersion: v1
     kind: Pod
     spec:
+      serviceAccountName: jenkins-admin
       containers:
       - name: jnlp
         image: jenkins/inbound-agent:latest
@@ -50,9 +51,8 @@ podTemplate(yaml: '''
           // }
           sh '''
             // pwd && ls
-            // kubectl apply -f k8s/webcast.yml
-            // kubectl get deployments/webcast-app -n devops
-            kubernetesDeploy(enableConfigSubstitution: true, configs: 'k8s/webcast.yaml', kubeconfigId: 'kubernetes')
+            kubectl apply -f k8s/webcast.yml
+            kubectl get deployments/webcast-app -n devops
           '''
         }
       }
