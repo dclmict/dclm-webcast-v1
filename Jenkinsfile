@@ -5,12 +5,6 @@ podTemplate(yaml: '''
       containers:
       - name: jnlp
         image: jenkins/inbound-agent:latest
-      - name: maven
-        image: maven:3.8.1-jdk-8
-        command:
-        - sleep
-        args:
-        - 99d
       - name: kaniko
         image: gcr.io/kaniko-project/executor:debug
         command:
@@ -48,7 +42,6 @@ podTemplate(yaml: '''
             }
           }
         }
-
       }
     }
   }
