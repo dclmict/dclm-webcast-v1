@@ -5,6 +5,8 @@ podTemplate(yaml: '''
       containers:
       - name: jnlp
         image: jenkins/inbound-agent:latest
+      - name: k8s
+        image: alpine/k8s:1.24.6
       - name: kaniko
         image: gcr.io/kaniko-project/executor:debug
         command:
@@ -22,7 +24,8 @@ podTemplate(yaml: '''
             items:
             - key: .dockerconfigjson
               path: config.json
-''') {
+''') 
+{
   node(POD_LABEL) {
     stage('build') {
       git url: 'https://github.com/dclmict/dclm-webcast.git', branch: 'main'      
@@ -36,11 +39,15 @@ podTemplate(yaml: '''
     }
 
     stage('deploy') {
-      container('jnlp') {
+      container('k8s') {
         stage('deploy webcast-app') {
-          script {
-            kubernetesDeploy(enableConfigSubstitution: true, configs: "webcast.yaml", kubeconfigId: "kubernetes")
-          }
+          // script {
+          //   kubernetesDeploy(enableConfigSubstitution: true, configs: "webcast.yaml", kubeconfigId: "kubernetes")
+          // }
+          sh '''
+            kubectl apply -f k8s/webcast.yaml
+            kubectl get deployments/webcast-app -n devops
+          '''
         }
       }
     }
