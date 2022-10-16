@@ -46,12 +46,13 @@ podTemplate(yaml: '''
       container('k8s') {
         stage('deploy webcast-app') {
           // script {
-          //   kubernetesDeploy(enableConfigSubstitution: true, configs: "webcast.yaml", kubeconfigId: "kubernetes")
+          //   kubernetesDeploy(enableConfigSubstitution: true, configs: "k8s/webcast.yaml", kubeconfigId: "kubernetes")
           // }
           sh '''
-            pwd && ls
-            kubectl apply -f k8s/webcast.yml
-            kubectl get deployments/webcast-app -n devops
+            // pwd && ls
+            // kubectl apply -f k8s/webcast.yml
+            // kubectl get deployments/webcast-app -n devops
+            kubernetesDeploy(enableConfigSubstitution: true, configs: 'k8s/webcast.yaml', kubeconfigId: 'kubernetes')
           '''
         }
       }
