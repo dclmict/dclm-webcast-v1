@@ -50,7 +50,7 @@ podTemplate(yaml: '''
           // }
           sh '''
             pwd && ls
-            kubectl apply -f k8s/webcast.yaml
+            kubectl apply -f ./k8s/webcast.yaml
             kubectl get deployments/webcast-app -n devops
           '''
         }
