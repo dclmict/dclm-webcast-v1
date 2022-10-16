@@ -41,11 +41,14 @@ podTemplate(yaml: '''
 
     stage('deploy') {
       container('jnlp') {
-        dir('k8s'){
-          script {
-            kubernetesDeploy(enableConfigSubstitution: true, configs: "webcast.yaml", kubeconfigId: "kubernetes")
+        steps {
+          dir('k8s'){
+            script {
+              kubernetesDeploy(enableConfigSubstitution: true, configs: "webcast.yaml", kubeconfigId: "kubernetes")
+            }
           }
         }
+
       }
     }
   }
