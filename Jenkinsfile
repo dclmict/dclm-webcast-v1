@@ -7,6 +7,10 @@ podTemplate(yaml: '''
         image: jenkins/inbound-agent:latest
       - name: k8s
         image: alpine/k8s:1.24.6
+        command:
+        - sleep
+        args:
+        - 99d        
       - name: kaniko
         image: gcr.io/kaniko-project/executor:debug
         command:
