@@ -54,7 +54,8 @@ podTemplate(yaml: '''
           // writeYaml file: "k8s/webcast.yml", data: config
           sh '''
             // pwd && ls
-            kubectl apply -f k8s/webcast.yml
+            apk add gettext
+            envsubst < k8s/webcast.yml | kubectl apply -f -
             kubectl get deployments/webcast-app -n devops
           '''
         }
