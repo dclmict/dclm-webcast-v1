@@ -49,9 +49,9 @@ podTemplate(yaml: '''
           // script {
           //   kubernetesDeploy(enableConfigSubstitution: true, configs: "k8s/webcast.yaml", kubeconfigId: "kubernetes")
           // }
-          def config = readYaml file: "k8s/webcast.yml"
-          config.metadata.name = params.NEWCLAIM
-          writeYaml file: "k8s/webcast.yml", data: config
+          // def config = readYaml file: "k8s/webcast.yml"
+          // config.metadata.name = params.BUILD_NUMBER
+          // writeYaml file: "k8s/webcast.yml", data: config
           sh '''
             // pwd && ls
             kubectl apply -f k8s/webcast.yml
