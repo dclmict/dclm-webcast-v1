@@ -29,9 +29,9 @@ podTemplate(yaml: '''
             items:
             - key: .dockerconfigjson
               path: config.json
-''') 
-{
-  timestamps {
+''')
+timestamps {
+  {
     node(POD_LABEL) {
       stage('build') {
         git url: 'https://github.com/dclmict/dclm-webcast.git', branch: 'main'      
@@ -66,7 +66,7 @@ podTemplate(yaml: '''
 
       stage('notify') {
         always {
-            slackSend( channel: "#jenkins", color: "good", message: "Jenkins Pipeline demo")
+            slackSend( channel: "#jenkins", color: "good", message: "Jenkins Pipeline")
         }
       }    
 
