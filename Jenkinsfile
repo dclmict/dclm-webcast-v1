@@ -57,10 +57,17 @@ podTemplate(yaml: '''
             apk add gettext
             envsubst < k8s/webcast.yml | kubectl apply -f -
             kubectl get deployments/webcast-app -n devops
+            echo 'Kindly visit: http://webcast.k8s/'
           '''
         }
       }
     }
+
+    post {
+        always {
+            slackSend( channel: "#jenkins", color: "good", message: "Jenkins Pipeline")
+        }
+    }    
 
   }
 }
