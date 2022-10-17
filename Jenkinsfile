@@ -65,7 +65,7 @@ podTemplate(yaml: '''
 
     stage('notify') {
       always {
-          slackSend( channel: "#jenkins", color: "good", message: "Jenkins Pipeline")
+          slackSend( channel: "#jenkins", color: "good", message: "Jenkins Pipeline demo")
       }
     }    
 
