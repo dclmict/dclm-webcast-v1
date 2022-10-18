@@ -45,6 +45,7 @@ podTemplate(yaml: '''
 ''')
 {
   node(POD_LABEL) {
+    // https://www.jenkins.io/doc/pipeline/tour/environment/
     withEnv ([
       'BUILD_USER='
     ])
@@ -84,25 +85,27 @@ podTemplate(yaml: '''
         dir('report') {
           sh 'pwd -P'
         }
-        publishHTML (target : [allowMissing: false,
+        publishHTML ([
+          allowMissing: false,
           alwaysLinkToLastBuild: false,
           keepAll: true,
           reportDir: 'report',
           reportFiles: 'index.html',
           reportName: 'report',
-          reportTitles: ''])
+          reportTitles: ''
+        ])
       }
 
-      // https://www.jenkins.io/doc/pipeline/tour/environment/
-      withEnv (['BUILD_USER = getBuildUser()']) {
-        stage('notify') {
-          slackSend (
-            channel: '#jenkins',
-            color: COLOR_MAP[currentBuild.currentResult],
-            message: "*${currentBuild.currentResult}:* ${env.JOB_NAME} build ${env.BUILD_NUMBER} by $BUILD_USER \n More information at: ${env.BUILD_URL}report"
-          )
-        }
+      
+      stage('notify') {
+        BUILD_USER = getBuildUser()
+        slackSend (
+          channel: '#jenkins',
+          color: COLOR_MAP[currentBuild.currentResult],
+          message: "*${currentBuild.currentResult}:* ${env.JOB_NAME} build ${env.BUILD_NUMBER} by ${BUILD_USER} \n More information at: ${env.BUILD_URL}report"
+        )
       }
+      
     }
 
   }
