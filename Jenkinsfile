@@ -2,13 +2,21 @@
 
 import groovy.json.JsonOutput
 
-def COLOR_MAP = [
-  'SUCCESS': 'good',
-  'FAILURE': 'danger'
-]
 
 def getBuildUser() {
   return currentBuild.rawBuild.getCause(Cause.UserIdCause).getUserId()
+}
+
+def slackNotify()
+{
+ if ( currentBuild.currentResult == "SUCCESS" ) {
+  buildSummary = "Job: ${env.JOB_NAME} build #${env.BUILD_NUMBER} by ${BUILD_USER}\n Status: *SUCCESS*\n Build Report: ${env.BUILD_URL}report"
+  slackSend color : "good", message: "${buildSummary}", channel: '#jenkins'
+ }
+ else {
+  buildSummary = "Job: ${env.JOB_NAME} build #${env.BUILD_NUMBER} by ${BUILD_USER}\n Status: *FAILURE*\n Error Description: *${ERROR}* \nBuild Report :${env.BUILD_URL}report"
+  slackSend color : "danger", message: "${buildSummary}", channel: '#jenkins'
+ }
 }
 
 podTemplate(yaml: '''
@@ -90,12 +98,9 @@ podTemplate(yaml: '''
       }
 
       stage('notify') {
-        BUILD_USER = getBuildUser()
-        slackSend (
-          channel: '#jenkins',
-          color: COLOR_MAP[currentBuild.currentResult],
-          message: "*${currentBuild.currentResult}:* ${env.JOB_NAME} build ${env.BUILD_NUMBER} by ${BUILD_USER} \n More information at: ${env.BUILD_URL}report"
-        )
+        BUILD_USER = getBuildUser() //https://naiveskill.com/jenkins-pipeline-functions/
+        ERROR = "${env.BUILD_URL}/console"
+        slackNotify()
       }
       
     }
