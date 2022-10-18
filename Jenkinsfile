@@ -82,7 +82,7 @@ podTemplate(yaml: '''
 
       stage('notify') {
         BUILD_USER = getBuildUser() //https://naiveskill.com/jenkins-pipeline-functions/
-        ERROR = "${env.BUILD_URL}/console"
+        ERROR = "${env.BUILD_URL}console"
         slackNotify()
       }
       
@@ -101,7 +101,7 @@ def slackNotify()
   slackSend color : "good", message: "${buildSummary}", channel: '#jenkins'
  }
  else {
-  buildSummary = "Job: ${env.JOB_NAME} build #${env.BUILD_NUMBER} by ${BUILD_USER}\n Status: *FAILURE*\n Error Description: *${ERROR}* \nBuild Report :${env.BUILD_URL}report"
+  buildSummary = "Job: ${env.JOB_NAME} build #${env.BUILD_NUMBER} by ${BUILD_USER}\n Status: *FAILURE*\n Error Description: ${ERROR} \nBuild Report: ${env.BUILD_URL}report"
   slackSend color : "danger", message: "${buildSummary}", channel: '#jenkins'
  }
 }
