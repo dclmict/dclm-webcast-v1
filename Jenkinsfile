@@ -1,3 +1,5 @@
+// pipeline syntax: http://jenkins.k8s/pipeline-syntax/
+
 import groovy.json.JsonOutput
 def COLOR_MAP = [
   'SUCCESS': 'good',
@@ -78,7 +80,7 @@ podTemplate(yaml: '''
       }
 
       stage('report'){
-        dir('foo') {
+        dir('report') {
           sh 'pwd -P'
         }
         publishHTML (target : [allowMissing: false,
