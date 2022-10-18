@@ -2,23 +2,6 @@
 
 import groovy.json.JsonOutput
 
-
-def getBuildUser() {
-  return currentBuild.rawBuild.getCause(Cause.UserIdCause).getUserId()
-}
-
-def slackNotify()
-{
- if ( currentBuild.currentResult == "SUCCESS" ) {
-  buildSummary = "Job: ${env.JOB_NAME} build #${env.BUILD_NUMBER} by ${BUILD_USER}\n Status: *SUCCESS*\n Build Report: ${env.BUILD_URL}report"
-  slackSend color : "good", message: "${buildSummary}", channel: '#jenkins'
- }
- else {
-  buildSummary = "Job: ${env.JOB_NAME} build #${env.BUILD_NUMBER} by ${BUILD_USER}\n Status: *FAILURE*\n Error Description: *${ERROR}* \nBuild Report :${env.BUILD_URL}report"
-  slackSend color : "danger", message: "${buildSummary}", channel: '#jenkins'
- }
-}
-
 podTemplate(yaml: '''
     apiVersion: v1
     kind: Pod
@@ -105,4 +88,20 @@ podTemplate(yaml: '''
       
     }
   }
+}
+
+def getBuildUser() {
+  return currentBuild.rawBuild.getCause(Cause.UserIdCause).getUserId()
+}
+
+def slackNotify()
+{
+ if ( currentBuild.currentResult == "SUCCESS" ) {
+  buildSummary = "Job: ${env.JOB_NAME} build #${env.BUILD_NUMBER} by ${BUILD_USER}\n Status: *SUCCESS*\n Build Report: ${env.BUILD_URL}report"
+  slackSend color : "good", message: "${buildSummary}", channel: '#jenkins'
+ }
+ else {
+  buildSummary = "Job: ${env.JOB_NAME} build #${env.BUILD_NUMBER} by ${BUILD_USER}\n Status: *FAILURE*\n Error Description: *${ERROR}* \nBuild Report :${env.BUILD_URL}report"
+  slackSend color : "danger", message: "${buildSummary}", channel: '#jenkins'
+ }
 }
