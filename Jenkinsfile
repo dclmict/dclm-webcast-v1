@@ -96,7 +96,7 @@ podTemplate(yaml: '''
           slackSend (
             channel: '#jenkins',
             color: COLOR_MAP[currentBuild.currentResult],
-            message: "*${currentBuild.currentResult}:* ${env.JOB_NAME} build ${env.BUILD_NUMBER} by $BUILD_USER \n More information at: ${env.BUILD_URL}dclm-webcast-job"
+            message: "*${currentBuild.currentResult}:* ${env.JOB_NAME} build ${env.BUILD_NUMBER} by $BUILD_USER \n More information at: ${env.BUILD_URL}report"
           )
         }
       }
