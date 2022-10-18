@@ -79,14 +79,7 @@ podTemplate(yaml: '''
         }
       }
 
-      stage('report') {
-        BUILD_USER = getBuildUser()
-
-        slackSend (
-          channel: '#jenkins', 
-          color: COLOR_MAP[currentBuild.currentResult], 
-          message: "*${currentBuild.currentResult}:* ${env.JOB_NAME} build ${env.BUILD_NUMBER} by ${BUILD_USER} \n More information at: ${env.BUILD_URL}dclm-webcast-job/")
-
+      stage('report'){
         publishHTML (target : [allowMissing: false,
           alwaysLinkToLastBuild: false,
           keepAll: true,
@@ -94,6 +87,16 @@ podTemplate(yaml: '''
           reportFiles: 'index.html',
           reportName: 'dclm-webcast-job',
           reportTitles: ''])
+      }
+      
+      stage('notify') {
+        withEnv ([
+          'BUILD_USER = getBuildUser()'
+        slackSend (
+          channel: '#jenkins', 
+          color: COLOR_MAP[currentBuild.currentResult], 
+          message: "*${currentBuild.currentResult}:* ${env.JOB_NAME} build ${env.BUILD_NUMBER} by ${BUILD_USER} \n More information at: ${env.BUILD_URL}dclm-webcast-job/")          
+        ])
       }
     }
 
