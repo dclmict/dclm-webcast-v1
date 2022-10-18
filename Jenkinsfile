@@ -64,12 +64,6 @@ podTemplate(yaml: '''
       stage('deploy') {
         container('k8s') {
           stage('deploy webcast-app') {
-            // script {
-            //   kubernetesDeploy(enableConfigSubstitution: true, configs: "k8s/webcast.yaml", kubeconfigId: "kubernetes")
-            // }
-            // def config = readYaml file: "k8s/webcast.yml"
-            // config.metadata.name = params.BUILD_NUMBER
-            // writeYaml file: "k8s/webcast.yml", data: config
             sh '''
               // pwd && ls
               apk add gettext
@@ -81,9 +75,8 @@ podTemplate(yaml: '''
         }
       }
 
-      stage('report'){
+      stage('publish') {
         dir('report') {
-          sh 'pwd -P'
         }
         publishHTML ([
           allowMissing: false,
@@ -96,7 +89,6 @@ podTemplate(yaml: '''
         ])
       }
 
-      
       stage('notify') {
         BUILD_USER = getBuildUser()
         slackSend (
@@ -107,6 +99,5 @@ podTemplate(yaml: '''
       }
       
     }
-
   }
 }
