@@ -84,12 +84,13 @@ podTemplate(yaml: '''
         publishHTML (target : [allowMissing: false,
           alwaysLinkToLastBuild: false,
           keepAll: true,
-          reportDir: 'reports',
+          reportDir: 'report',
           reportFiles: 'index.html',
-          reportName: 'dclm-webcast-job',
+          reportName: 'report',
           reportTitles: ''])
       }
 
+      // https://www.jenkins.io/doc/pipeline/tour/environment/
       withEnv (['BUILD_USER = getBuildUser()']) {
         stage('notify') {
           slackSend (
