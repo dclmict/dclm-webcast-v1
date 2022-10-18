@@ -2,6 +2,15 @@
 
 import groovy.json.JsonOutput
 
+def COLOR_MAP = [
+  'SUCCESS': 'good',
+  'FAILURE': 'danger'
+]
+
+def getBuildUser() {
+  return currentBuild.rawBuild.getCause(Cause.UserIdCause).getUserId()
+}
+
 podTemplate(yaml: '''
     apiVersion: v1
     kind: Pod
@@ -95,15 +104,6 @@ podTemplate(yaml: '''
         }
       }
     }
-
-    def COLOR_MAP = [
-      'SUCCESS': 'good',
-      'FAILURE': 'danger'
-    ]
-
-    def getBuildUser() [
-      return currentBuild.rawBuild.getCause(Cause.UserIdCause).getUserId()
-    ]
 
   }
 }
