@@ -1,15 +1,5 @@
 import groovy.json.JsonOutput
 
-def COLOR_MAP = [
-  'SUCCESS': 'good',
-  'FAILURE': 'danger',
-]
-
-def getBuildUser() {
-  return currentBuild.rawBuild.getCause(Cause.UserIdCause).getUserId()
-}
-
-
 podTemplate(yaml: '''
     apiVersion: v1
     kind: Pod
@@ -83,7 +73,7 @@ podTemplate(yaml: '''
         publishHTML (target : [allowMissing: false,
           alwaysLinkToLastBuild: false,
           keepAll: true,
-          reportDir: 'reports',
+          reportDir: '',
           reportFiles: 'index.html',
           reportName: 'dclm-webcast-job',
           reportTitles: ''])
@@ -91,10 +81,19 @@ podTemplate(yaml: '''
 
       withEnv (['BUILD_USER = getBuildUser()']) {
         stage('notify') {
+          def COLOR_MAP = [
+            'SUCCESS': 'good',
+            'FAILURE': 'danger'
+          ]
+
+          def getBuildUser() {
+            return currentBuild.rawBuild.getCause(Cause.UserIdCause).getUserId()
+          }
+
           slackSend (
             channel: '#jenkins',
             color: COLOR_MAP[currentBuild.currentResult],
-            message: "*${currentBuild.currentResult}:* ${env.JOB_NAME} build ${env.BUILD_NUMBER} by ${BUILD_USER} \n More information at: ${env.BUILD_URL}dclm-webcast-job"
+            message: "*${currentBuild.currentResult}:* ${env.JOB_NAME} build ${env.BUILD_NUMBER} by $BUILD_USER \n More information at: ${env.BUILD_URL}dclm-webcast-job"
           )
         }
       }
