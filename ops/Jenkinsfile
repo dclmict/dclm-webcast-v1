@@ -69,7 +69,7 @@ podTemplate(yaml: '''
       stage('publish') {
         dir('report') {
         }
-        publishHTML ([
+        publishHTML([
           allowMissing: false,
           alwaysLinkToLastBuild: false,
           keepAll: true,

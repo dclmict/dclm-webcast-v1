@@ -1,0 +1,21 @@
+# Services
+services:
+
+  # Webcast Service
+  webcast-app:
+    container_name: webcast-app
+    image: opeoniye/nginx-php-fpm
+    ports:
+      - 1005:80
+    networks:
+      - bams
+    volumes:
+      - ./:/var/www/html
+      - ./.docker/webcast.conf:/etc/nginx/sites-available/default.conf
+      # - ./.env:/var/www/html/.env
+    restart: always
+
+networks:
+  bams:
+    name: bams-dev
+    external: true
