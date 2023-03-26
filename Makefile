@@ -17,15 +17,15 @@ git:
 		read -p "Do you want to push your commit to GitHub? (yes|no): " choice; \
 		case "$$choice" in \
 			yes|Y|y) \
-				echo "\033[32mPushing commit to GitHub...:\033[0m"; \
+				echo "\033[32mPushing commit to GitHub...\033[0m"; \
 				git push; \
 				;; \
 			no|N|n) \
-				echo "\033[32m Nothing to be done. Thank you...:\033[0m"; \
+				echo "\033[32m Nothing to be done. Thank you...\033[0m"; \
 				exit 0; \
 				;; \
 			*) \
-				echo "\033[32m No choice. Exiting script...:\033[0m"; \
+				echo "\033[32m No choice. Exiting script...\033[0m"; \
 				exit 1; \
 				;; \
 		esac \
@@ -36,15 +36,15 @@ git:
 		read -p "Do you want to push your commit to GitHub? (yes|no): " choice; \
 		case "$$choice" in \
 			yes|Y|y) \
-				echo "\033[32mPushing commit to GitHub...:\033[0m"; \
+				echo "\033[32mPushing commit to GitHub...\033[0m"; \
 				git push; \
 				;; \
 			no|N|n) \
-				echo "\033[32m Nothing to be done. Thank you...:\033[0m"; \
+				echo "\033[32m Nothing to be done. Thank you...\033[0m"; \
 				exit 0; \
 				;; \
 			*) \
-				echo "\033[32m No choice. Exiting script...:\033[0m"; \
+				echo "\033[32m No choice. Exiting script...\033[0m"; \
 				exit 1; \
 				;; \
 		esac \
