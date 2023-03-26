@@ -1,9 +1,7 @@
 # https://git-scm.com/docs/gitignore
 # folders
-_
+/vendor
 
 # files
-setup
-ops/.env.dev
-ops/.env.prod
-ops/docker/pin
+.env
+docker-compose.yml

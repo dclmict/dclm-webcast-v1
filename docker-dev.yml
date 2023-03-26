@@ -1,0 +1,21 @@
+# Services
+services:
+  webcast-app:
+    container_name: webcast-app
+    image: opeoniye/dclm-webcast:latest
+    env_file: .env
+    ports:
+      - 1005:443
+    networks:
+      - bams
+    volumes:
+      - .:/var/www
+      - ~/dev/keys/mac/bams.pem:/var/ssl/cert.pem
+      - ~/dev/keys/mac/bams-key.pem:/var/ssl/key.pem
+    restart: always
+    working_dir: /var/www
+
+networks:
+  bams:
+    name: bams
+    external: true

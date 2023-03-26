@@ -1,0 +1,20 @@
+# Services
+services:
+  webcast-app:
+    container_name: webcast-app
+    image: opeoniye/dclm-webcast:latest
+    env_file: .env
+    ports:
+      - 1002:443
+    networks:
+      - dclm
+    volumes:
+      - /etc/letsencrypt/live/dclm.org/fullchain.pem:/var/ssl/cert.pem
+      - /etc/letsencrypt/live/dclm.org/privkey.pem:/var/ssl/key.pem
+    restart: always
+    working_dir: /var/www
+
+networks:
+  dclm:
+    name: dclm
+    external: true
