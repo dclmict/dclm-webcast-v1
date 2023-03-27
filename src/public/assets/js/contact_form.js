@@ -4,7 +4,7 @@ $(function () {
 
     $('#contact-form').on('submit', function (e) {
         if (!e.isDefaultPrevented()) {
-            var url = "bin/libs/contact_form.php";
+            var url = "card/contact.php";
 
             /*$form = $(this);
             //show some response on the button

@@ -1,7 +1,7 @@
 <?php
 // require ReCaptcha class
-require_once('../recaptcha/src/autoload.php');
-require_once('db.php');
+require_once('recaptcha/src/autoload.php');
+require_once __DIR__ .'/../../app/config/db.php';
 
 // configure
 $from       = 'DCLM WEBCAST <noreply@dclm.org>';

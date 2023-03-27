@@ -1,6 +1,7 @@
 # https://git-scm.com/docs/gitignore
 # folders
 /vendor
+/node_modules
 
 # files
 .env

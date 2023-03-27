@@ -1,22 +1,22 @@
 
-<!-- modal5 -->
-<div id="myModal5" class="modal fade" role="dialog">
+<!-- modal6 -->
+<div id="myModal6" class="modal fade" role="dialog">
     <div class="modal-dialog">
         <!-- Modal content-->
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                 <h4 class="modal-title">
-                    Testimony Box
+                    Prayer Request
                 </h4>
             </div>
             <div class="modal-body">
-            	<script src="assets/js/testimony_form.js"></script>
+            	<script src="assets/js/prequest_form.js"></script>
             	<script src="assets/js/validator.js"></script>
 				<script src="https://www.google.com/recaptcha/api.js"></script>
 
-                <form role="form" method="post" id="testimony-form" >
-                    <p> Has the Lord been good to you? Then share with us the goodness and kindness of the Lord upon you. </p>&nbsp;
+                <form role="form" method="post" id="prayer-form" >
+                    <p> Send us your prayer request using the form below. </p>&nbsp;
 
                     <div class="messages"></div>
 
@@ -30,23 +30,23 @@
                     </div>
                     <div class="form-group">
                         <label for="name"> Subject:</label>
-                        <input type="text" class="form-control" id="subject" name="subject" placeholder="Type a subject for your testimony" required="required" maxlength="100">
+                        <input type="text" class="form-control" id="subject" name="subject" placeholder="Type a subject for your prayer request" required="required" maxlength="100">
                     </div>
                     <div class="form-group">
-                        <label for="name"> Testimony:</label>
-                        <textarea class="form-control" type="textarea" name="testimony" id="testimony" placeholder="Please share your testimony here" required="required" maxlength="6000" rows="5" data-error="Please share your testimony here."></textarea>
+                        <label for="name"> Prayer Request:</label>
+                        <textarea class="form-control" type="textarea" name="request" id="request" placeholder="Please type your prayer request inside this box" required="required" maxlength="6000" rows="5" data-error="Please, leave us a message."></textarea>
                     </div>
                     <div class="form-group">
-                        <div class="g-recaptcha" data-sitekey="6LeEjMEZAAAAAItQzTrG2vsP3DDrH0jad7Bf1hv1"></div>
+                        <div class="g-recaptcha" data-sitekey="6LdSjzUlAAAAAHSJ923HUZD75Wu4G3Ux08u1MWWJ"></div>
                     </div>
                     <button type="submit" class="btn btn-lg btn-success btn-block" id="btnContactUs">Submit &rarr;</button>
                 </form>
 				<script type="text/javascript">
 					jQuery(document).ready(function () {
-					jQuery("#testimony-form").submit(function () {
+					jQuery("#prayer-form").submit(function () {
 						_gaq.push(
 						["_setAccount", "UA-42290414-11"],
-						["_trackEvent", "testimony", "submit"]
+						["_trackEvent", "request", "submit"]
 							);
 						});
 					});
@@ -55,4 +55,4 @@
         </div>
     </div>
 </div>
-<!-- modal5 -->
+<!-- modal6 -->

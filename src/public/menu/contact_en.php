@@ -37,7 +37,7 @@
                         <textarea class="form-control" type="textarea" name="message" id="message" placeholder="Please type your Message here" required="required" maxlength="6000" rows="5" data-error="Please, leave us a message."></textarea>
                     </div>
                     <div class="form-group">
-                        <div class="g-recaptcha" data-sitekey="6LeEjMEZAAAAAItQzTrG2vsP3DDrH0jad7Bf1hv1"></div>
+                        <div class="g-recaptcha" data-sitekey="6LdSjzUlAAAAAHSJ923HUZD75Wu4G3Ux08u1MWWJ"></div>
                     </div>
                     <button type="submit" class="btn btn-lg btn-success btn-block" id="btnContactUs">Submit &rarr;</button>
                 </form>

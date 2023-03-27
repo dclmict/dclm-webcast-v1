@@ -2,7 +2,7 @@ $(function () {
     $('#prayer-form').validator();
     $('#prayer-form').on('submit', function (e) {
         if (!e.isDefaultPrevented()) {
-            var url = "assets/info/prayer.php";
+            var url = "card/prayer.php";
 
             /*$form = $(this);
             //show some response on the button

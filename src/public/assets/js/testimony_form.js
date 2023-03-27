@@ -4,7 +4,7 @@ $(function () {
 
     $('#testimony-form').on('submit', function (e) {
         if (!e.isDefaultPrevented()) {
-            var url = "bin/libs/testimony_form.php";
+            var url = "card/testimony.php";
 
             /*$form = $(this);
             //show some response on the button

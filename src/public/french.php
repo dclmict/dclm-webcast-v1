@@ -1,39 +1,34 @@
-<?php 
-
-$page_title="WC French"; 
-?>
-
 <!DOCTYPE html>
 <html>
 <head>
 <title>French - DCLM Webcast</title>
-<?php require_once('../app/controller/db.php'); ?>
-<!-- custom-theme -->
-<?php @include "../app/header.php"; ?>
+<?php $page_title="WC French"; ?>
+<?php require_once('../app/config/db.php'); ?>
+<?php @include "menu/header.php"; ?>
 </head>
 
 <body>
 <div class="main">
 	<div class="logo">
-		<h1><a href="french">DCLM WEBCAST</a></h1>
-		<h3>French</h3>
+	<h1><a href="/">DCLM WEBCAST</a></h1>
+		<h3><a href="french">French</a></h3>
 	</div>
 
-	<?php @include "../app/menu.php"; ?>
+	<?php @include "menu/menu.php"; ?>
 </div>
 
-<?php @include "../app/mautic.php"; ?>			<!-- #myModal1-->
-<?php @include "../app/event_fr.php"; ?>			<!-- #myModal2-->
-<?php @include "../app/resource.php"; ?>		<!-- #myModal3-->
-<?php @include "../app/contact_fr.php"; ?>			<!-- #myModal4-->
-<?php @include "../app/testimony_fr.php"; ?>		<!-- #myModal5	-->
-<?php @include "../app/prequest_fr.php"; ?>		<!-- #myModal6-->
-<?php @include "../app/apps.php"; ?>				<!-- #myModal7-->
+<?php @include "menu/mautic.php"; ?>			<!-- #myModal1-->
+<?php @include "menu/event_fr.php"; ?>			<!-- #myModal2-->
+<?php @include "menu/resource.php"; ?>		<!-- #myModal3-->
+<?php @include "menu/contact_fr.php"; ?>			<!-- #myModal4-->
+<?php @include "menu/testimony_fr.php"; ?>		<!-- #myModal5	-->
+<?php @include "menu/prequest_fr.php"; ?>		<!-- #myModal6-->
+<?php @include "menu/apps.php"; ?>				<!-- #myModal7-->
 
 <div class="w3_agile_main_grids">
 	
 	<?php 
-		//require_once('../app/libs/db.php');
+		//require_once('menu/libs/db.php');
 
 		// Create connection
 		$conn = Connect();
@@ -76,7 +71,7 @@ $page_title="WC French";
 								<p> </p>
 							</div>-->
 							<div class="w3_main_grid_right_grid" id="binfo_fr">
-								<!-- load ../appfo_fr_in.php-->
+								<!-- load menufo_fr_in.php-->
 							</div>
 						</div>
 					</li>
@@ -88,7 +83,6 @@ $page_title="WC French";
 </div>
 
 </div>
-<div class="agileits_copyright"><p>© <?php echo date('Y') ?> Deeper Christian Life Ministry</a></p></div>
-<script src="assets/js/bootstrap.js"></script>
+<?php @include 'menu/footer.php'; ?>
 </body>
 </html>

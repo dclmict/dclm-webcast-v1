@@ -27,15 +27,4 @@
 <link href="assets/css/style.css" rel="stylesheet" type="text/css" media="all" />
 <link href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i&amp;subset=latin-ext" rel="stylesheet">
 
-<script src="assets/js/jquery-2.1.4.min.js"></script>
-<script src="assets/js/info.js"></script>
-
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-42290414-11"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag("js", new Date());
-  gtag("config", "UA-42290414-11");
-</script>
-
+<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>

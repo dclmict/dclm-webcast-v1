@@ -54,6 +54,11 @@ body a:hover,body a{
 .logo h1 {
     margin: 5px 50px;
 }
+.logo h3 a {
+	margin: 5px 50px;
+	font-size: 0.9em;
+	color: #7aeff3;
+}
 .logo a {
     font-size: 0.9em;
     color: #fff;
