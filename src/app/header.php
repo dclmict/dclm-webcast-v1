@@ -28,77 +28,8 @@
 <link href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i&amp;subset=latin-ext" rel="stylesheet">
 
 <script src="assets/js/jquery-2.1.4.min.js"></script>
+<script src="assets/js/info.js"></script>
 
-<script>
-	$(document).ready(function(){
-	setTimeout(function(){
-	$("#binfo").load("bin/binfo_en.php")
-	}, 0);
-	setInterval(function(){
-	$("#binfo").load("bin/binfo_en.php")
-	}, 300000000);
-	});
-</script>
-<script>
-$(document).ready(function(){
-	setTimeout(function(){
-	$("#binfo_fr").load("bin/binfo_fr.php")
-	}, 0);
-	setInterval(function(){
-	$("#binfo_fr").load("bin/binfo_fr.php")
-	}, 300000000);
-	});
-</script>
-<script>
-$(document).ready(function(){
-	setTimeout(function(){
-	$("#binfo_por").load("bin/binfo_por.php")
-	}, 0);
-	setInterval(function(){
-	$("#binfo_por").load("bin/binfo_por.php")
-	}, 300000000);
-	});
-</script>
-<script>
-$(document).ready(function(){
-	setTimeout(function(){
-	$("#binfo_esp").load("bin/binfo_esp.php")
-	}, 0);
-	setInterval(function(){
-	$("#binfo_esp").load("bin/binfo_esp.php")
-	}, 300000000);
-	});
-</script>
-<script>
-$(document).ready(function(){
-	setTimeout(function(){
-	$("#binfo_yor").load("bin/binfo_yor.php")
-	}, 0);
-	setInterval(function(){
-	$("#binfo_yor").load("bin/binfo_yor.php")
-	}, 300000000);
-	});
-</script>
-<script>
-$(document).ready(function(){
-	setTimeout(function(){
-	$("#binfo_hausa").load("bin/binfo_hausa.php")
-	}, 0);
-	setInterval(function(){
-	$("#binfo_hausa").load("bin/binfo_hausa.php")
-	}, 300000000);
-	});
-</script>
-<script>
-$(document).ready(function(){
-	setTimeout(function(){
-	$("#binfo_igbo").load("bin/binfo_igbo.php")
-	}, 0);
-	setInterval(function(){
-	$("#binfo_igbo").load("bin/binfo_igbo.php")
-	}, 300000000);
-	});
-</script>
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-42290414-11"></script>
 <script>

@@ -7,9 +7,9 @@ $page_title="WC French";
 <html>
 <head>
 <title>French - DCLM Webcast</title>
-
+<?php require_once('../app/controller/db.php'); ?>
 <!-- custom-theme -->
-<?php @include "bin/libs/header.php"; ?>
+<?php @include "../app/header.php"; ?>
 </head>
 
 <body>
@@ -19,21 +19,21 @@ $page_title="WC French";
 		<h3>French</h3>
 	</div>
 
-	<?php @include "bin/menu.php"; ?>
+	<?php @include "../app/menu.php"; ?>
 </div>
 
-<?php @include "bin/mautic.php"; ?>			<!-- #myModal1-->
-<?php @include "bin/event_fr.php"; ?>			<!-- #myModal2-->
-<?php @include "bin/resource.php"; ?>		<!-- #myModal3-->
-<?php @include "bin/contact_fr.php"; ?>			<!-- #myModal4-->
-<?php @include "bin/testimony_fr.php"; ?>		<!-- #myModal5	-->
-<?php @include "bin/prequest_fr.php"; ?>		<!-- #myModal6-->
-<?php @include "bin/apps.php"; ?>				<!-- #myModal7-->
+<?php @include "../app/mautic.php"; ?>			<!-- #myModal1-->
+<?php @include "../app/event_fr.php"; ?>			<!-- #myModal2-->
+<?php @include "../app/resource.php"; ?>		<!-- #myModal3-->
+<?php @include "../app/contact_fr.php"; ?>			<!-- #myModal4-->
+<?php @include "../app/testimony_fr.php"; ?>		<!-- #myModal5	-->
+<?php @include "../app/prequest_fr.php"; ?>		<!-- #myModal6-->
+<?php @include "../app/apps.php"; ?>				<!-- #myModal7-->
 
 <div class="w3_agile_main_grids">
 	
 	<?php 
-		require_once('bin/libs/db.php');
+		//require_once('../app/libs/db.php');
 
 		// Create connection
 		$conn = Connect();
@@ -76,7 +76,7 @@ $page_title="WC French";
 								<p> </p>
 							</div>-->
 							<div class="w3_main_grid_right_grid" id="binfo_fr">
-								<!-- load binfo_fr_in.php-->
+								<!-- load ../appfo_fr_in.php-->
 							</div>
 						</div>
 					</li>

@@ -1,5 +1,5 @@
 <?php 
-		require_once('libs/db.php');
+		require_once __DIR__ .'/../../../app/controller/db.php';
 
 		// Create connection
 		$conn = Connect();

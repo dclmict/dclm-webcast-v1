@@ -1,10 +1,8 @@
 $(function () {
-
     $('#prayer-form').validator();
-
     $('#prayer-form').on('submit', function (e) {
         if (!e.isDefaultPrevented()) {
-            var url = "bin/libs/prequest_form.php";
+            var url = "assets/info/prayer.php";
 
             /*$form = $(this);
             //show some response on the button

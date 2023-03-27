@@ -18,7 +18,7 @@
 			<li role="separator" class="divider"></li>
 			<li><a href="https://radio.dclm.org" target="_blank"><span>DCLM Radio</span></a></li>
 			<li role="separator" class="divider"></li>
-			<li><a href="https://testimony.dclm.org/testimony" target="_blank">Testimonies</a></li>
+			<li><a href="https://testimony.dclm.org" target="_blank">DCLM Testimonies</a></li>
 			<li role="separator" class="divider"></li>
 			<li><a href="#" data-toggle="modal" data-target="#myModal6">Prayer Request</a></li>
 			<li role="separator" class="divider"></li>

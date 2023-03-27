@@ -2,13 +2,15 @@
 $page_title="WC English"; 
 ?>
 
+
+
 <!DOCTYPE html>
 <html>
 <head>
 <title>DCLM Webcast - Deeper Life Bible Church</title>
-
+<?php require_once('../app/controller/db.php'); ?>
 <!-- custom-theme -->
-<?php @include "bin/libs/header.php"; ?>
+<?php @include "../app/header.php"; ?>
 </head>
 
 <body>
@@ -17,20 +19,20 @@ $page_title="WC English";
 		<h1><a href="/">DCLM WEBCAST</a></h1>
 		<h3>English</h3>
 	</div>
-	<?php @include "bin/menu.php"; ?>
+	<?php @include "../app/menu.php"; ?>
 </div>
-<?php @include "bin/mautic.php"; ?>			<!-- #myModal1	-->
-<?php @include "bin/event_en.php"; ?>		<!-- #myModal2	-->
-<?php @include "bin/resource.php"; ?>		<!-- #myModal3	-->
-<?php @include "bin/contact_en.php"; ?>		<!-- #myModal4	-->
-<?php @include "bin/testimony_en.php"; ?>	<!-- #myModal5	-->
-<?php @include "bin/prequest_en.php"; ?>	<!-- #myModal6	-->
-<?php @include "bin/apps.php"; ?>			<!-- #myModal7	-->
+<?php @include "../app/mautic.php"; ?>			<!-- #myModal1	-->
+<?php @include "../app/event_en.php"; ?>		<!-- #myModal2	-->
+<?php @include "../app/resource_en.php"; ?>		<!-- #myModal3	-->
+<?php @include "../app/contact_en.php"; ?>		<!-- #myModal4	-->
+<?php @include "../app/testimony_en.php"; ?>	<!-- #myModal5	-->
+<?php @include "../app/prequest_en.php"; ?>	<!-- #myModal6	-->
+<?php @include "../app/apps.php"; ?>			<!-- #myModal7	-->
 
 <div class="w3_agile_main_grids" >
 	
 	<?php
-		require_once('bin/libs/db.php');
+		//require_once('../app/controller/db.php');
 
 		// Create connection
 		$conn = Connect();

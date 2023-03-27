@@ -1,39 +1,38 @@
 <?php 
 
-$page_title="WC Portuguese"; 
+$page_title="WC Spanish"; 
 ?>
 
 <!DOCTYPE html>
 <html>
 <head>
-<title>Yoruba - DCLM Webcast</title>
-
+<title>Spanish - DCLM Webcast</title>
+<?php require_once('../app/controller/db.php'); ?>
 <!-- custom-theme -->
-<?php @include "bin/libs/header.php"; ?>
+<?php @include "../app/header.php"; ?>
 </head>
 
 <body>
 <div class="main">
 	<div class="logo">
-		<h1><a href="yoruba">DCLM WEBCAST</a></h1>
-		<h3>Yoruba</h3>
+		<h1><a href="spanish">DCLM WEBCAST</a></h1>
+		<h3>Spanish</h3>
 	</div>
 
-	<?php @include "bin/menu.php"; ?>
+	<?php @include "../app/menu.php"; ?>
 </div>
-
-<?php @include "bin/mautic.php"; ?>			<!-- #myModal1-->
-<?php @include "bin/event_en.php"; ?>			<!-- #myModal2-->
-<?php @include "bin/resource.php"; ?>		<!-- #myModal3-->
-<?php @include "bin/contact_en.php"; ?>			<!-- #myModal4-->
-<?php @include "bin/testimony_en.php"; ?>		<!-- #myModal5	-->
-<?php @include "bin/prequest_en.php"; ?>		<!-- #myModal6-->
-<?php @include "bin/apps.php"; ?>				<!-- #myModal7-->
+<?php @include "../app/mautic.php"; ?>				<!-- #myModal1-->
+<?php @include "../app/event_por.php"; ?>			<!-- #myModal2-->
+<?php @include "../app/resource.php"; ?>			<!-- #myModal3-->
+<?php @include "../app/contact_por.php"; ?>		<!-- #myModal4-->
+<?php @include "../app/testimony_por.php"; ?>		<!-- #myModal5	-->
+<?php @include "../app/prequest_por.php"; ?>		<!-- #myModal6-->
+<?php @include "../app/apps.php"; ?>				<!-- #myModal7-->
 
 <div class="w3_agile_main_grids">
 	
 	<?php 
-		require_once('bin/libs/db.php');
+		//require_once('../app/libs/db.php');
 
 		// Create connection
 		$conn = Connect();
@@ -46,12 +45,12 @@ $page_title="WC Portuguese";
 		$row = mysqli_fetch_assoc($result);
 		// test if wins is greater than or over 5
 		if($row['player'] == 'youtube'){
-			$r = $row['ytid_yor'];
+			$r = $row['ytid_esp'];
 			$e = $row['yt'];
 			eval("?> $e <?php ");
 		}
 		else if($row['player'] == 'facebook'){
-			$r = $row['fbid_yor'];
+			$r = $row['fbid_esp'];
 			$e = $row['fb'];
 			eval("?> $e <?php ");
 		}		
@@ -75,7 +74,7 @@ $page_title="WC Portuguese";
 								<h4>Diffusion en Direct</h4>
 								<p> </p>
 							</div>-->
-							<div class="w3_main_grid_right_grid" id="binfo_yor">
+							<div class="w3_main_grid_right_grid" id="binfo_esp">
 								<!-- load binfo_fr_in.php-->
 							</div>
 						</div>

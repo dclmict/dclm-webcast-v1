@@ -11,9 +11,6 @@ RUN useradd -u 1000 -ms /bin/bash -g www www
 COPY --chown=www:www-data ./src /var/www
 COPY ./ops/docker /var/docker
 
-# set permissions for laravel app
-RUN chmod -R ug+w /var/www/storage
-
 # copy configs
 COPY ./ops/docker/supervisor.conf /etc/supervisord.conf
 COPY ./ops/docker/php/php.ini /usr/local/etc/php/conf.d/app.ini

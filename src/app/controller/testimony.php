@@ -1,19 +1,18 @@
 <?php
 // require ReCaptcha class
 require_once('../recaptcha/src/autoload.php');
-require_once('db.php');
+require_once __DIR__ .'/../../app/controller/db.php';
 
 // configure
 $from       = 'DCLM WEBCAST <noreply@dclm.org>';
-$sendTo     = 'DCLM WEBCAST <prayerrequests@dclm.org>';
-$subject    = 'Prayer Request Form Submission';
-$fields     = array('name' => 'Name', 'email' => 'Email', 'subject' => 'Subject', 'request' => 'Prayer Request'); // array variable name => Text to appear in the email
-$okMessage  = 'Prayer request received. Go in peace; and the God of Israel grant thee thy petition that thou hast asked of him. Amen';
-$errorMessage = 'There was an error while submitting your prayer request. Please try again!';
+$sendTo     = 'DCLM WEBCAST <testimonies@dclm.org>';
+$subject    = 'Testimony Form Submission';
+$fields     = array('name' => 'Name', 'email' => 'Email', 'subject' => 'Subject', 'testimony' => 'Testimony'); // array variable name => Text to appear in the email
+$okMessage  = 'Testimony received. Your lips shall continue to declare of the goodness and works of the Lord in the land of the living. Amen';
+$errorMessage = 'There was an error while submitting your testimony. Please try again!';
 $recaptchaSecret = getenv('RECAPTCHA');
 
 // let's do the sending
-
 try
 {
     if (!empty($_POST)) {
@@ -25,13 +24,12 @@ try
             throw new \Exception('ReCaptcha is not set.');
         }
 
-        // do not forget to enter your secret key in the config above 
+        // do not forget to enter your secret key in the config above
         // from https://www.google.com/recaptcha/admin
         
         $recaptcha = new \ReCaptcha\ReCaptcha($recaptchaSecret, new \ReCaptcha\RequestMethod\CurlPost());
         
         // we validate the ReCaptcha field together with the user's IP address
-        
         $response = $recaptcha->verify($_POST['g-recaptcha-response'], $_SERVER['REMOTE_ADDR']);
 
         if (!$response->isSuccess()) {
@@ -44,12 +42,12 @@ try
         $name    = $conn->real_escape_string($_POST['name']);
         $email   = $conn->real_escape_string($_POST['email']);
         $subj    = $conn->real_escape_string($_POST['subject']);
-        $request = $conn->real_escape_string($_POST['request']);
-        $query   = "INSERT into prequest_form (name, email, subject, request) VALUES('" . $name . "','" . $email . "','" . $subj . "','" . $request . "')";
+        $testimony = $conn->real_escape_string($_POST['testimony']);
+        $query   = "INSERT into testimony_form (name, email, subject, testimony) VALUES('" . $name . "','" . $email . "','" . $subj . "','" . $testimony . "')";
         $dbsuccess = $conn->query($query);
 
         // everything went well, we can compose the message, as usually
-        $emailText = "Prayer Request Form Details\n======================\n\n";
+        $emailText = "Testimony Form Details\n===================\n\n";
 
         foreach ($_POST as $key => $value) {
 
@@ -63,7 +61,7 @@ try
             'Content-Type: text/plain; charset="UTF-8";',
             'From: ' . $from,
             'Reply-To: ' . $from,
-            'Bcc: prayerrequests@dclm.org,' . $email . '',
+            'Bcc: testimonies@dclm.org,' . $email . '',
         );
 
         mail($sendTo, $subject, $emailText, implode("\n", $headers));

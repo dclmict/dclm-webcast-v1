@@ -1,13 +1,9 @@
 
-	<?php 
-		$dbhost = "mysql";
-		//$dbhost = "dbserver001.cjjnqqu01ipm.us-east-1.rds.amazonaws.com";
-		$dbuser = "webcast";
-		$dbpass = "ICTdclm2018";
-		$dbname = "dclm.webcast";
+	<?php
+		//require_once('../app/controller/db.php');
 
 		// Create connection
-		$conn = new mysqli($dbhost, $dbuser, $dbpass, $dbname) or die($conn->connect_error);
+		$conn = Connect();
 
 		$sql = "SELECT * FROM webcast_info LIMIT 1";
 		$result = $conn->query($sql);
@@ -70,4 +66,3 @@
 		} 
 		$conn->close();
 	?>
-			

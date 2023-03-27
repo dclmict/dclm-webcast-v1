@@ -54,8 +54,6 @@ function _recaptcha_qsencode ($data) {
         return $req;
 }
 
-
-
 /**
  * Submits an HTTP POST to a reCAPTCHA server
  * @param string $host
@@ -84,14 +82,12 @@ function _recaptcha_http_post($host, $path, $data, $port = 80) {
         fwrite($fs, $http_request);
 
         while ( !feof($fs) )
-                $response .= fgets($fs, 1160); // One TCP-IP packet
+          $response .= fgets($fs, 1160); // One TCP-IP packet
         fclose($fs);
         $response = explode("\r\n\r\n", $response, 2);
 
         return $response;
 }
-
-
 
 /**
  * Gets the challenge HTML (javascript and non-javascript version).
@@ -127,9 +123,6 @@ function recaptcha_get_html ($pubkey, $error = null, $use_ssl = false)
   		<input type="hidden" name="recaptcha_response_field" value="manual_challenge"/>
 	</noscript>';
 }
-
-
-
 
 /**
  * A ReCaptchaResponse is returned from recaptcha_check_answer()
@@ -233,7 +226,6 @@ function recaptcha_mailhide_url($pubkey, $privkey, $email) {
 		     "you can do so at <a href='http://www.google.com/recaptcha/mailhide/apikey'>http://www.google.com/recaptcha/mailhide/apikey</a>");
 	}
 	
-
 	$ky = pack('H*', $privkey);
 	$cryptmail = _recaptcha_aes_encrypt ($email, $ky);
 	
@@ -272,6 +264,4 @@ function recaptcha_mailhide_html($pubkey, $privkey, $email) {
 		"' onclick=\"window.open('" . htmlentities ($url) . "', '', 'toolbar=0,scrollbars=0,location=0,statusbar=0,menubar=0,resizable=0,width=500,height=300'); return false;\" title=\"Reveal this e-mail address\">...</a>@" . htmlentities ($emailparts [1]);
 
 }
-
-
 ?>
