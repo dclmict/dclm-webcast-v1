@@ -26,5 +26,4 @@
 <link href="assets/css/icon-font.css" rel="stylesheet">
 <link href="assets/css/style.css" rel="stylesheet" type="text/css" media="all" />
 <link href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i&amp;subset=latin-ext" rel="stylesheet">
-
-<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+<link rel="stylesheet" href="assets/mejs/build/mediaelementplayer.min.css" />

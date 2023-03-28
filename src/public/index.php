@@ -24,11 +24,30 @@
 <?php @include "menu/prequest_en.php"; ?>	<!-- #myModal6	-->
 <?php @include "menu/apps.php"; ?>			<!-- #myModal7	-->
 
-<div class="w3_agile_main_grids" >
-	
-	<?php
-		//require_once('menu/controller/db.php');
 
+<div class="w3_agile_main_grids">
+
+	<div id="ede">
+		<form action="#" method="get" id="babel">
+			<label>Language <select name="lang">
+				<option value="en" selected>English (en)</option>
+				<option value="es">Español / Spanish; Castilian (es)</option>
+				<option value="fr">Français / French (fr)</option>
+				<option value="it">Italiano / Italian (it)</option>
+				<option value="pt">Português / Portuguese (pt)</option>
+			</select>
+			</label>
+			<label>Stretching (Video Only)<select name="stretching">
+				<option value="auto" selected>Auto (default)</option>
+				<option value="responsive">Responsive</option>
+				<option value="fill" selected>Fill</option>
+				<option value="none" selected>None (original dimensions)</option>
+			</select>
+			</label>
+		</form>
+	</div>	
+
+	<?php
 		// Create connection
 		$conn = Connect();
 
@@ -73,7 +92,6 @@
 	</div>
 	<div class="clear"> </div>
 </div>
-
 </div>
 <?php @include 'menu/footer.php'; ?>
 </body>
