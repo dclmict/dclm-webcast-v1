@@ -239,10 +239,13 @@ import Inside from './Inside.vue';
 <script>
     import axios from 'axios';
     // import { google } from 'googleapis';
-    var api_key= 'AIzaSyDBc8_ejOdvuJFFSHYHm32Z9h1dszkdRDs';
-    var channelId='UC_x5XG1OV2P6uZZ5FSM9Ttw';
-    var maxResults = '4'
-    export default { 
+
+    var api_key= import.meta.env.VITE_API_KEY;
+    var channelId= import.meta.env.VITE_API_CHANNELID;
+    var maxResults = import.meta.env.VITE_API_MAV_VALUE; 
+    var playlistId = import.meta.env.VITE_API_PLAYLISTID; 
+
+    export default {
         created() {
             this.ItemLoad();
         },
@@ -262,8 +265,8 @@ import Inside from './Inside.vue';
             ItemLoad ()
                 {
                 //var page = `https://youtube.googleapis.com/youtube/v3/playlists?part=snippet%2CcontentDetails&channelId=${channelId}&maxResults=${maxResults}&key=${api_key}`;
-                var page = `https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=PLOU2XLYxmsIIQye6fWbHmf9HhRKs0z9r7&maxResults=${maxResults}&order=viewCount&key=${api_key}`;
-                //var page = https://youtube.googleapis.com/youtube/v3/videos?part=snippet&id=GpXb_spFGYw&key=AIzaSyDBc8_ejOdvuJFFSHYHm32Z9h1dszkdRDs
+                var page = `https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=${playlistId}&maxResults=${maxResults}&order=viewCount&key=${api_key}`;
+                //var page = https://youtube.googleapis.com/youtube/v3/videos?part=snippet&id=GpXb_spFGYw&key=${api_key}
                 axios.get(page).then(
                     ({data})=>{
                     this.videos = data.items;
@@ -280,6 +283,7 @@ import Inside from './Inside.vue';
           
         },
     }
+    
 </script>
 
    

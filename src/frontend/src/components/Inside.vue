@@ -55,7 +55,7 @@ import relatedvideo from './relatedvideo.vue';
                 15,988 people
                 </span>
             </div>
-            <div class="message-container">
+            <!-- <div class="message-container">
                 <div class="message anim" style="--delay: .1s">
                     <div class="author-img__wrapper video-author video-p">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check">
@@ -71,7 +71,27 @@ import relatedvideo from './relatedvideo.vue';
             </div>
             <div class="chat-footer anim" style="--delay: .1s">
                 <input type="text" placeholder="Write your message">
-            </div>
+            </div> -->
+           <div class="chat-modal">
+                <div class="chat-modal-in">
+                    <form action="/../../chat.html">
+                        <div class="form-field"><h3>Join Chat</h3></div>
+                        <div class="form-field">
+                            <label>Display name</label>
+                            <input type="text" name="name" autofocus>
+                        </div>
+                        <div class="form-field">
+                            <label>Room name</label>
+                            <input type="text" name="room" autofocus>
+                        </div>
+                        <div class="form-field">
+                            <button>Join</button>
+                        </div>
+                    </form>
+                </div>
+           </div>
+
+
         </div>
         <div class="msg-details msg-content">
             <p class="msg-option" @click="next('chat-content-div')">Live Chat</p>
@@ -101,27 +121,30 @@ import relatedvideo from './relatedvideo.vue';
 <script>
     import axios from 'axios';
     // import { google } from 'googleapis';
-    var api_key= 'AIzaSyDBc8_ejOdvuJFFSHYHm32Z9h1dszkdRDs';
-    var channelId='UC_x5XG1OV2P6uZZ5FSM9Ttw';
+
+    var api_key= import.meta.env.VITE_API_KEY;
+    var channelId= import.meta.env.VITE_API_CHANNELID;
+    var playlistId = import.meta.env.VITE_API_PLAYLISTID; 
+
     var maxResults = '3'
     export default { 
         created() {
             this.vidload();
         },
-        name: 'dclm-webcast-related-video',
+        name: 'dclm webcast related video',
         data(){
             return{
                 related_videos: [],
             }
         },
-        // mounted() {
-        //     console.log("related video called.......")
-        // },
+        mounted() {
+            console.log("related video called.......")
+        },
         methods: {
           
             vidload ()
                 {
-                var page = `https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=PLOU2XLYxmsIIQye6fWbHmf9HhRKs0z9r7&maxResults=${maxResults}&order=viewCount&key=${api_key}`;
+                var page = `https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=${playlistId}&maxResults=${maxResults}&order=viewCount&key=${api_key}`;
                 axios.get(page).then(
                     ({data})=>{
                     this.related_videos = data.items;
@@ -143,5 +166,3 @@ import relatedvideo from './relatedvideo.vue';
        
     }
 </script>
-
-   

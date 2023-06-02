@@ -815,7 +815,7 @@ iframe {
 .chat {
   background-color: #252836;
   border-radius: 20px;
-  padding: 0 20px;
+  /* padding: 0 20px; */
   height: 414px;
   max-height: 414px;
   /* overflow-y: auto; */
@@ -1186,4 +1186,31 @@ button.vjs-play-control.vjs-control.vjs-button {
 
 .msg-option-chat{
   margin-right:10px;
+}
+.chat-modal{
+  width:100%;
+  height:80%;
+  /* padding:20px; */
+  position:relative;
+  background:rgba(0, 0, 0, 0.5);
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items:center;
+}
+.chat-modal-in{
+  width:250px;
+  border-radius:5px;
+  height:250px;
+  background:#fff;
+  padding:10px;
+}
+.form-field{
+  margin:5px;
+}
+label ~ input{
+  width:100%;
+  border:1px solid #000;
+  margin-top:5px;
+  border-radius:5px;
 }

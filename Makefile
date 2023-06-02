@@ -27,7 +27,7 @@ repo:
 		esac \
 	else \
 		echo "\033[31mPlease enter github repo name: \033[0m "; \
-		git init && git add . && git commit -m "DCLM DAM"; \
+		git init && git add . && git commit -m "DCLM Webcast"; \
 		read -r repo; \
 		gh repo create dclmict/$$repo --private --source=. --remote=origin; \
 		read -p "Do you want to push your code to GitHub? (yes|no): " choice; \
@@ -130,7 +130,7 @@ prod:
 		docker compose -f ./src/docker-compose.yml --env-file ./src/.env up -d; \
 	else \
 		echo "\033[31mDirectory not found, setting up project...\033[0m"; \
-		git clone https://github.com/dclmict/dclm-dam.git .; \
+		git clone https://github.com/dclmict/dclm-webcast.git .; \
 		sudo chown -R ubuntu:ubuntu .; \
 		touch ops/.env.prod; \
 		echo "\033[32mPaste .env content and save with :wq\033[0m"; \

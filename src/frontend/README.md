@@ -1,8 +1,6 @@
-<p align="center"><a href="https://dclm.org" target="_blank"><img src="https://dclmcloud.s3.amazonaws.com/img/logo.png" width="206.5" height="190"></a></p>
+# frontend1
 
-## DCLM Webcast (Frontend)
-This is the frontend for the DCLM Webcast app
-
+This template should help get you started developing with Vue 3 in Vite.
 
 ## Recommended IDE Setup
 
