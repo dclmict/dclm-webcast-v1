@@ -1,0 +1,3 @@
+[submodule "src/public/assets/mejs"]
+	path = src/public/assets/mejs
+	url = https://github.com/mediaelement/mediaelement.git
