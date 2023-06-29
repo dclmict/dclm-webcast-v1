@@ -1,0 +1,8 @@
+# https://git-scm.com/docs/gitignore
+# files
+.env
+docker-compose.yml
+
+# folders
+/vendor
+/node_modules
